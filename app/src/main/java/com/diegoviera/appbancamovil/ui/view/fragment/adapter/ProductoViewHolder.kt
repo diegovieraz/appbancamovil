@@ -5,6 +5,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.diegoviera.appbancamovil.R
+import com.diegoviera.appbancamovil.data.model.ProductoModel
 import com.diegoviera.appbancamovil.databinding.AdapterProductoBinding
 import com.diegoviera.appbancamovil.ui.view.fragment.dataclass.DataProducto
 
@@ -12,7 +13,7 @@ class ProductoViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
     val binding = AdapterProductoBinding.bind(view)
 
-    fun render(producto: DataProducto, onClickListener: (DataProducto) -> Unit) {
+    fun render(producto: ProductoModel, onClickListener: (ProductoModel) -> Unit) {
         //SETEAR INFORMACIÓN DE CUENTAS
         binding.tvTipoCuenta.text = producto.tipoCuenta
         val monto = producto.montoCuenta.toString()

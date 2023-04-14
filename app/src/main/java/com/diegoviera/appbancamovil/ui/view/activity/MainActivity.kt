@@ -1,7 +1,7 @@
 package com.diegoviera.appbancamovil.ui.view.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import com.diegoviera.appbancamovil.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +20,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //MÉTODO DE NAVEGACIÓN INTERNA
+    override fun onBackPressed() {}
 
 }

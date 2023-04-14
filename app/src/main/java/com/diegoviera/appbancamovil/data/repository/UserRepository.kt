@@ -9,8 +9,8 @@ class UserRepository @Inject constructor(
     private val api: UserService,
     private val userProvider: UserProvider
 ) {
-    suspend fun getLogin(): UserModel {
-        val response = api.getLogin()
+    suspend fun getLogin(user: String, password: String): UserModel {
+        val response = api.getLogin(user, password)
         userProvider.response = response
         return response
     }

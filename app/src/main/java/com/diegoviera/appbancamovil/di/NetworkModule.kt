@@ -1,5 +1,7 @@
 package com.diegoviera.appbancamovil.di
 
+import com.diegoviera.appbancamovil.data.network.MovimientoApiClient
+import com.diegoviera.appbancamovil.data.network.ProductoApiClient
 import com.diegoviera.appbancamovil.data.network.UserApiClient
 import dagger.Module
 import dagger.Provides
@@ -27,6 +29,18 @@ object NetworkModule {
     @Provides
     fun provideUserApiClient(retrofit: Retrofit): UserApiClient {
         return retrofit.create(UserApiClient::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProductoApiClient(retrofit: Retrofit): ProductoApiClient {
+        return retrofit.create(ProductoApiClient::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMovimientoApiClient(retrofit: Retrofit): MovimientoApiClient {
+        return retrofit.create(MovimientoApiClient::class.java)
     }
 
 }

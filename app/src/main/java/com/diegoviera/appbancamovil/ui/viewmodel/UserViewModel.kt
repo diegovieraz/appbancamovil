@@ -1,5 +1,6 @@
 package com.diegoviera.appbancamovil.ui.viewmodel
 
+import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,10 +18,10 @@ class UserViewModel @Inject constructor(
     val userModel = MutableLiveData<UserModel?>()
     val isLoading = MutableLiveData<Boolean>()
 
-    fun iniciarSesion() {
+    fun iniciarSesion(user: String, password: String) {
         viewModelScope.launch {
             isLoading.postValue(true)
-            val result = getLoginUseCase()
+            val result = getLoginUseCase(user,password)
             if (result!=null){
                 userModel.postValue(result)
                 isLoading.postValue(false)

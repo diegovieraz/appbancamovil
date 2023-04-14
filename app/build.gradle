@@ -76,6 +76,12 @@ dependencies {
     kapt 'com.google.dagger:hilt-compiler:2.44'
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
 
+    //Swipe Refresh
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    //Animations
+    implementation "com.airbnb.android:lottie:6.0.0"
+
 
 
 }

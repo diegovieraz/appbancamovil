@@ -7,5 +7,7 @@ import javax.inject.Inject
 class GetLoginUserCase @Inject constructor(
     private val repository:UserRepository
 ) {
-    suspend operator fun invoke():UserModel? = repository.getLogin()
+    suspend operator fun invoke(user: String, password: String):UserModel? {
+        return repository.getLogin(user,password)
+    }
 }

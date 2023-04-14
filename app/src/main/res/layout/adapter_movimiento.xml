@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
                     android:fontFamily="@font/helvetica"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     tools:text="Transferencia" />
 
                 <TextView
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
                 android:fontFamily="@font/helvetica"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="start"
                 tools:text="S/ +6.10" />

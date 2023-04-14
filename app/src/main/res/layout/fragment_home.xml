@@ -24,8 +24,8 @@
 
         android:background="@color/bg_grey"
         app:itemTextColor="@color/bg_grey_dark"
-        app:menu="@menu/menu_home">
-        <!--app:itemIconTint="null"-->
+        app:menu="@menu/menu_home"
+        app:itemIconTint="@color/bg_green">
 
 
 

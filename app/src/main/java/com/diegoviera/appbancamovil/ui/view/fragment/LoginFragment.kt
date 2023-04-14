@@ -1,17 +1,20 @@
 package com.diegoviera.appbancamovil.ui.view.fragment
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
 import com.diegoviera.appbancamovil.R
 import com.diegoviera.appbancamovil.databinding.FragmentLoginBinding
 import com.diegoviera.appbancamovil.ui.viewmodel.UserViewModel
@@ -36,19 +39,67 @@ class LoginFragment : Fragment() {
 
     private fun initView() {
         binding.btnIngresar.setOnClickListener {
-            //CONSULTA LOGIN
-            userViewModel.iniciarSesion()
+            //CONSULTA SERVICIO LOGIN
+            val user = binding.etDNI.text.toString()
+            val password = binding.etPassword.text.toString()
+            hideKeyboard()
+            userViewModel.iniciarSesion(user, password)
 
             userViewModel.userModel.observe(viewLifecycleOwner, Observer {
                 if (it != null) {
-                    if ("true".equals(it.result)){
-                        Toast.makeText(context, "Usuario conectado correctamente", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    if ("true".equals(it.result)) {
+                        Toast.makeText(
+                            context,
+                            "Usuario conectado correctamente",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        //Enviar parámetro id para consultar productos
+
+                        val bundle = Bundle()
+                        bundle.putString("id", it.id.toString())
+
+                        var fr = fragmentManager?.beginTransaction()
+                        fr?.replace(R.id.fragment_placeholder, HomeFragment(bundle))?.addToBackStack(null)
+                        fr?.commit()
+
+                        //Limpiar campos
+                        binding.etDNI.setText("")
+                        binding.etPassword.setText("")
+
                     } else {
-                        Toast.makeText(context, "Usuario y/o contraseña incorrectos.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            context,
+                            "Usuario y/o contraseña incorrectos.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             })
         }
+    }
+
+    fun NavController.navigateSafe(
+        @IdRes resId: Int,
+        args: Bundle? = null,
+        navOptions: NavOptions? = null,
+        navExtras: Navigator.Extras? = null
+    ) {
+        val action = currentDestination?.getAction(resId) ?: graph.getAction(resId)
+        if (action != null && currentDestination?.id != action.destinationId) {
+            navigate(resId, args, navOptions, navExtras)
+        }
+    }
+
+    fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

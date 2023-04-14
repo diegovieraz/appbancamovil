@@ -12,7 +12,9 @@
     <color name="bg_white">#FFFFFFFF</color>
     <color name="bg_grey">#F3F3F3</color>
     <color name="bg_teal">#FF03DAC5</color>
+    <color name="bg_green">#A3C438</color>
     <color name="bg_red">#E91E63</color>
     <color name="bg_grey_dark">#464646</color>
+    <color name="bg_teal_transp">#70018786</color>
     F8FAF9
 </resources>
