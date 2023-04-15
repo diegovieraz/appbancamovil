@@ -65,6 +65,9 @@ Se pueden agregar más usuarios desde Mockoon y el servicio iniciarSesion(), per
 Hay algunas consideraciones en las cuales se puede mejorar. Por ejemplo, para el cierre de sesión luego de tiempo determinado o inactividad, lo recomendable es tener un servicio
 asociado a un token único, y que al vencimiento del token se determine el cierre de sesión. Esto se daría en una situación más real.
 
+Para las respuestas de los servicios se optó por el mapeo exitoso de los Response respectivos. En un desarrollo real se debe mapear las respuestas no exitosas, para tener control del
+reporte y control de errores en la aplicación.
+
 También se pudo tomar como alternativa en consideración para la navegación general el uso de GraphNavigation con safeNavigate, pero se optó por el replaceFragment para la navegación debido 
 al tiempo de implementación de la aplicación, con la intención de poder coberturar las funcionalidades en su totalidad.
 
